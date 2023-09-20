@@ -1,3 +1,7 @@
+# WellNest
+
+`WellNest is a holistic health and wellness forum platform that facilitates the exchange of information, personal experiences, and mutual support among its users. Within WellNest, community members gather to share insights, pose questions, and network with individuals sharing a common wellness objective.`
+
 # Technology
 
 - [Tailwind CSS](https://tailwindui.com/)

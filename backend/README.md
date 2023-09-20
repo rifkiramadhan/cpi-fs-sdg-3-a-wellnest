@@ -58,13 +58,19 @@
 `/api/users/profile/:userId`
 
 **`Headers`**
-`Authorization: Bearer <token>`
+
+```
+Authorization: Bearer <token>
+```
 
 **PUT**
 `/api/users/update/:userId`
 
 **`Headers`**
-`Authorization: Bearer <token>`
+
+```
+Authorization: Bearer <token>
+```
 
 **`Request`**
 
@@ -84,7 +90,10 @@
 `/api/users/follow/:userId`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -98,7 +107,10 @@
 `/api/users/unfollow/:userId`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -112,7 +124,10 @@
 `/api/users/block-user/:userId`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -126,7 +141,10 @@
 `/api/users/unblock-user/:userId`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -140,7 +158,10 @@
 `/api/users/forget-password-token`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -154,7 +175,10 @@
 `/api/users/password`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -168,13 +192,19 @@
 `/api/users/generate-verify-email-token`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **PUT**
 `/api/users/verify-account`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -191,7 +221,10 @@
 `/api/users/reset-password`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -206,7 +239,10 @@
 `/api/users/:userId`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
@@ -237,7 +273,10 @@
 `/api/email/`
 
 **`Headers`**
-`Bearer <token>`
+
+```
+Bearer <token>
+```
 
 **`Request`**
 
