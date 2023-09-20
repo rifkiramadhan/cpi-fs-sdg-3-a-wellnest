@@ -2,7 +2,7 @@
 
 # Database Structure
 
-![](../screenshot/Diagram.png)
+![](./Diagram.png)
 
 ## Relations:
 
