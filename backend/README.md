@@ -323,7 +323,7 @@ yarn install
 
 ```
 PORT=5000
-MONGO_URL=your_mongodb_url
+MONGODB_URL=your_mongodb_url
 ```
 
 5. Replace your_mongodb_url with your actual MongoDB connection URL.
