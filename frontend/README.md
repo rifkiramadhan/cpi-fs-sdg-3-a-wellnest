@@ -20,7 +20,7 @@
 - [React Share](https://www.npmjs.com/package/react-share)
 - [React Elastic Carousel](https://www.npmjs.com/package/react-elastic-carousel)
 - [React Quill](https://www.npmjs.com/package/react-quill)
-- [Domporify](https://www.npmjs.com/package/dompurify)
+- [Dompurify](https://www.npmjs.com/package/dompurify)
 
 ## How to Run Locally
 

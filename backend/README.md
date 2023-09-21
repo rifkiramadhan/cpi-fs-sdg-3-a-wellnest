@@ -20,6 +20,22 @@
 
 7. **User and User (viewedBy, followers, following):** Many-to-many relationship through self-referencing. A user can be followed by multiple users and can follow multiple users.
 
+# Technology
+
+- [Express](https://expressjs.com/en/starter/installing.html)
+- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Mongoose](https://mongoosejs.com/docs/guide.html)
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+- [Bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [Nodemailer](https://nodemailer.com/)
+- [Express Async Handler](https://www.npmjs.com/package/express-async-handler)
+- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [Cors](https://www.npmjs.com/package/cors)
+- [Bad Words](https://www.npmjs.com/package/bad-words)
+- [Sharp](https://www.npmjs.com/package/sharp)
+- [Multer](https://www.npmjs.com/package/multer)
+- [Cloudinary](https://www.npmjs.com/package/cloudinary)
+
 ## API Request
 
 ### User API
@@ -27,7 +43,10 @@
 `POST User API`
 
 **POST**
-`/api/users/register`
+
+```
+/api/users/register
+```
 
 **`Request`**
 
@@ -41,7 +60,10 @@
 ```
 
 **POST**
-`/api/users/login`
+
+```
+/api/users/login
+```
 
 **`Request`**
 
@@ -53,7 +75,10 @@
 ```
 
 **GET**
-`/api/users/profile/:userId`
+
+```
+/api/users/profile/:userId
+```
 
 **`Headers`**
 
@@ -62,7 +87,10 @@ Authorization: Bearer <token>
 ```
 
 **PUT**
-`/api/users/update/:userId`
+
+```
+/api/users/update/:userId
+```
 
 **`Headers`**
 
@@ -82,10 +110,16 @@ Authorization: Bearer <token>
 ```
 
 **DELETE**
-`/api/users/delete/:userId`
+
+```
+/api/users/delete/:userId
+```
 
 **PUT**
-`/api/users/follow/:userId`
+
+```
+/api/users/follow/:userId
+```
 
 **`Headers`**
 
@@ -102,7 +136,10 @@ Bearer <token>
 ```
 
 **PUT**
-`/api/users/unfollow/:userId`
+
+```
+/api/users/unfollow/:userId
+```
 
 **`Headers`**
 
@@ -119,7 +156,10 @@ Bearer <token>
 ```
 
 **PUT**
-`/api/users/block-user/:userId`
+
+```
+/api/users/block-user/:userId
+```
 
 **`Headers`**
 
@@ -136,7 +176,10 @@ Bearer <token>
 ```
 
 **PUT**
-`/api/users/unblock-user/:userId`
+
+```
+/api/users/unblock-user/:userId
+```
 
 **`Headers`**
 
@@ -153,7 +196,10 @@ Bearer <token>
 ```
 
 **POST**
-`/api/users/forget-password-token`
+
+```
+/api/users/forget-password-token
+```
 
 **`Headers`**
 
@@ -170,7 +216,10 @@ Bearer <token>
 ```
 
 **PUT**
-`/api/users/password`
+
+```
+/api/users/password
+```
 
 **`Headers`**
 
@@ -187,7 +236,10 @@ Bearer <token>
 ```
 
 **POST**
-`/api/users/generate-verify-email-token`
+
+```
+/api/users/generate-verify-email-token
+```
 
 **`Headers`**
 
@@ -196,7 +248,10 @@ Bearer <token>
 ```
 
 **PUT**
-`/api/users/verify-account`
+
+```
+/api/users/verify-account
+```
 
 **`Headers`**
 
@@ -213,10 +268,16 @@ Bearer <token>
 ```
 
 **GET**
-`/api/users/:userId`
+
+```
+/api/users/:userId
+```
 
 **PUT**
-`/api/users/reset-password`
+
+```
+/api/users/reset-password
+```
 
 **`Headers`**
 
@@ -234,7 +295,10 @@ Bearer <token>
 ```
 
 **GET**
-`/api/users/:userId`
+
+```
+/api/users/:userId
+```
 
 **`Headers`**
 
@@ -254,7 +318,10 @@ Bearer <token>
 ```
 
 **PUT**
-`/api/users/profilephoto-upload`
+
+```
+/api/users/profilephoto-upload
+```
 
 **`Form Data`**
 
@@ -268,7 +335,10 @@ Bearer <token>
 `Send Email API`
 
 **POST**
-`/api/email/`
+
+```
+/api/email/
+```
 
 **`Headers`**
 
@@ -286,22 +356,6 @@ Bearer <token>
 }
 ```
 
-# Technology
-
-- [Express](https://expressjs.com/en/starter/installing.html)
-- [Nodemon](https://www.npmjs.com/package/nodemon)
-- [Mongoose](https://mongoosejs.com/docs/guide.html)
-- [Dotenv](https://www.npmjs.com/package/dotenv)
-- [Bcryptjs](https://www.npmjs.com/package/bcryptjs)
-- [Nodemailer](https://nodemailer.com/)
-- [Express Async Handler](https://www.npmjs.com/package/express-async-handler)
-- [Jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
-- [Cors](https://www.npmjs.com/package/cors)
-- [Bad Words](https://www.npmjs.com/package/bad-words)
-- [Sharp](https://www.npmjs.com/package/sharp)
-- [Multer](https://www.npmjs.com/package/multer)
-- [Cloudinary](https://www.npmjs.com/package/cloudinary)
-
 ## How to Run Locally
 
 Follow these steps to run this API locally:
@@ -313,7 +367,7 @@ Follow these steps to run this API locally:
 cd backend
 ```
 
-3. Install the necessary dependencies:
+3. **Install Dependencies:** Install all necessary dependencies using Yarn. If you don't have Yarn, you can install it by running **`npm install -g yarn`**. After installing Yarn, install the application dependencies:
 
 ```
 yarn install
@@ -330,7 +384,7 @@ MONGODB_URL=your_mongodb_url
 6. Run the server:
 
 ```
-yarn server
+yarn dev
 ```
 
 The server should now be running on:

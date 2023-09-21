@@ -1,4 +1,5 @@
 const expressAsyncHandler = require('express-async-handler');
+const Comment = require('../../model/comment/Comment');
 
 //-------------------------------------
 // Create Comment
