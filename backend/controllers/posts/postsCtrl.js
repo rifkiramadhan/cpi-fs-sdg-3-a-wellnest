@@ -8,7 +8,7 @@ const User = require('../../model/user/User');
 const createPostCtrl = expressAsyncHandler(async (req, res) => {
 	try {
 		const post = await Post.create({
-			user: req?.user,
+			user: req.user,
 			category: req?.body?.category,
 			description: req?.body?.description,
 			isDisLiked: false,
@@ -44,34 +44,40 @@ const fetchPostCtrl = expressAsyncHandler(async (req, res) => {
 // Update Post
 //-------------------------------------
 const updatePostCtrl = expressAsyncHandler(async (req, res) => {
-  try{
-    const getPostById = await Post.findById(req.params.id);
-    getPostById.title = req?.body?.title;
-    getPostById.category = req?.body?.category;
-    getPostById.description = req?.body?.description;
-  
-    // console.log(getPostById)
-    const updatePost = await Post.updateOne({_id: req.params.id}, getPostById)
-  
-    return res.json(updatePost)
+	try {
+		const getPostById = await Post.findById(req.params.id);
+		if (req.user._id.toString() !== getPostById.user.toString()) {
+			return res.json({
+				message: "unable to edit other user's post",
+			});
+		}
+		getPostById.title = req?.body?.title;
+		getPostById.category = req?.body?.category;
+		getPostById.description = req?.body?.description;
 
-  }catch(error){
-    return res.json(error)
-  }
+		// console.log(getPostById)
+		const updatePost = await Post.updateOne(
+			{ _id: req.params.id },
+			getPostById
+		);
+
+		return res.json(updatePost);
+	} catch (error) {
+		return res.json(error);
+	}
 });
 
 //-------------------------------------
 // Delete Post
 //-------------------------------------
 const deletePostCtrl = expressAsyncHandler(async (req, res) => {
-  try{
-    const deletePost = await Post.deleteOne({_id: req.params.id})
+	try {
+		const deletePost = await Post.deleteOne({ _id: req.params.id });
 
-    return res.json(deletePost)
-  }
-  catch(error){
-    return res.json(deletePost)
-  }
+		return res.json(deletePost);
+	} catch (error) {
+		return res.json(deletePost);
+	}
 });
 
 //-------------------------------------
