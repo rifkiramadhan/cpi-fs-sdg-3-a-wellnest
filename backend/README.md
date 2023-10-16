@@ -389,6 +389,8 @@ Bearer <token>
     value: image
 ```
 
+
+
 `Like toggle button`
 
 **PUT**
@@ -397,11 +399,21 @@ Bearer <token>
 /api/posts/likes
 ```
 
+**`Request`**
+
+```
+{
+    "_id_": "String",
+}
+```
+
 **`Headers`**
 
 ```
 Bearer <token>
 ```
+
+
 
 `Dislike toggle button`
 
@@ -411,11 +423,21 @@ Bearer <token>
 /api/posts/dislikes
 ```
 
+**`Request`**
+
+```
+{
+    "_id_": "String",
+}
+```
+
 **`Headers`**
 
 ```
 Bearer <token>
 ```
+
+
 
 `Update Post`
 
@@ -431,6 +453,8 @@ Bearer <token>
 Bearer <token>
 ```
 
+
+
 `Get Post By Id`
 
 **GET**
@@ -438,6 +462,8 @@ Bearer <token>
 ```
 /api/posts/:id
 ```
+
+
 
 `Update a Post`
 
@@ -462,6 +488,8 @@ Bearer <token>
     "description": "String"
 }
 ```
+
+
 
 `Delete a Post`
 
