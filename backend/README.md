@@ -356,6 +356,166 @@ Bearer <token>
 }
 ```
 
+### Posts API
+
+`Create Post API`
+
+**POST**
+
+```
+/api/posts/
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+**`Request`**
+
+```
+{
+    "category": "String",
+    "description": "String",
+    "title": "String"
+}
+```
+
+**`Form Data`**
+
+```
+    Key: image (file)
+    value: image
+```
+
+
+
+`Like toggle button`
+
+**PUT**
+
+```
+/api/posts/likes
+```
+
+**`Request`**
+
+```
+{
+    "_id_": "String",
+}
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+
+
+`Dislike toggle button`
+
+**PUT**
+
+```
+/api/posts/dislikes
+```
+
+**`Request`**
+
+```
+{
+    "_id_": "String",
+}
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+
+
+`Update Post`
+
+**PUT**
+
+```
+/api/posts/:id
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+
+
+`Get Post By Id`
+
+**GET**
+
+```
+/api/posts/:id
+```
+
+
+
+`Update a Post`
+
+**PUT**
+
+```
+/api/posts/:id
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+**`Request`**
+
+```
+{
+    "title": "String",
+    "category": "String",
+    "description": "String"
+}
+```
+
+
+
+`Delete a Post`
+
+**DELETE**
+
+```
+/api/posts/:id
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+**`Request`**
+
+```
+{
+    "title": "String",
+    "category": "String",
+    "description": "String"
+}
+```
+
+
 ## How to Run Locally
 
 Follow these steps to run this API locally:
