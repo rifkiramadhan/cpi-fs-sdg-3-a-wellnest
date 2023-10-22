@@ -5,6 +5,10 @@ const crypto = require('crypto');
 // Create Schema
 const userSchema = new mongoose.Schema(
   {
+    username: {
+      required: [true, 'Username is required'],
+      type: String,
+    },
     firstName: {
       required: [true, 'First name is required'],
       type: String,
@@ -56,6 +60,20 @@ const userSchema = new mongoose.Schema(
     isAccountVerified: {
       type: Boolean,
       default: false,
+    },
+    str_code:{
+      type: String,
+      default:
+        '10.10.20.2020',
+    },
+    qualification:{
+      type: String,
+    },
+    file_code:{
+      type: String,
+    }
+    ,str_file:{
+      type: String,
     },
     accountVerificationToken: String,
     accountVerificationTokenExpires: Date,
