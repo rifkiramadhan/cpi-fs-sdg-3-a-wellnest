@@ -453,8 +453,6 @@ Bearer <token>
 Bearer <token>
 ```
 
-
-
 `Get Post By Id`
 
 **GET**
@@ -462,8 +460,6 @@ Bearer <token>
 ```
 /api/posts/:id
 ```
-
-
 
 `Update a Post`
 
@@ -513,6 +509,99 @@ Bearer <token>
     "category": "String",
     "description": "String"
 }
+```
+
+### Comment API
+
+`Create Comment API`
+
+**POST**
+
+```
+/api/comments/
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+**`Request`**
+
+```
+{
+    "description": "String",
+    "postId": "String"
+}
+```
+
+`Update Comment`
+
+**PUT**
+
+```
+/api/comments/:id
+```
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+**`Request`**
+
+```
+{
+    "description": "String",
+}
+```
+
+`Get Comment By Id`
+
+**GET**
+
+```
+/api/Comments/:id
+```
+
+`Get All Comments By Post`
+
+**GET**
+
+```
+/api/Comments/
+```
+
+
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+
+**`Request`**
+
+```
+{
+    "postId": "String",
+}
+```
+
+
+`Delete a Comment`
+
+**DELETE**
+
+```
+/api/comments/:id
+```
+
+**`Headers`**
+
+```
+Bearer <token>
 ```
 
 
