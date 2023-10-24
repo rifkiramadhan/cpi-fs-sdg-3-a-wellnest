@@ -565,6 +565,13 @@ Bearer <token>
 /api/Comments/:id
 ```
 
+**`Headers`**
+
+```
+Bearer <token>
+```
+
+
 `Get All Comments By Post`
 
 **GET**
