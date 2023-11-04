@@ -1,7 +1,11 @@
 import React from 'react';
 
 const HomePage = () => {
-  return <div>Home Page</div>;
+	if (!window.localStorage.token) {
+		window.location.href = '/login';
+	}
+	console.log(window.localStorage);
+	return <div>Home Page</div>;
 };
 
 export default HomePage;
