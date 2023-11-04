@@ -5,6 +5,9 @@ import iconDot from '../../assets/icons/dot.svg';
 import Carousel from 'react-elastic-carousel'
 
 const HomePage = () => {
+  if (!window.localStorage.token) {
+		window.location.href = '/login';
+	}
   return <div className='mt-5  pt-5 px-44 bg-[#D8E7FF] h-full'>
     <h2 className='font-bold text-xl'>Kategori</h2>
     <div className='flex items-center gap-5'>
