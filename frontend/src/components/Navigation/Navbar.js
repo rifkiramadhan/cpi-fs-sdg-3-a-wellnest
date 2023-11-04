@@ -8,7 +8,7 @@ const Navbar = () => {
 				<div className="flex items-center">
 					<h1 className="text-2xl text-center px-4 font-black">WellNest</h1>
 				</div>
-				<div className='flex justify-between w-full ml-5 font-medium'>
+				<div className="flex justify-between w-full ml-5 font-medium">
 					<div className="">
 						<ul className="">
 							<li className="inline mr-5">Forum</li>
@@ -16,12 +16,31 @@ const Navbar = () => {
 							<li className="inline">Contact</li>
 						</ul>
 					</div>
-					<div className="">
+					{!window.localStorage.token ? <div className="">
 						<ul className="">
-							<li className="inline mr-8">Daftar</li>
-							<li className="inline"><button className='bg-blue-100 px-4 py rounded-full py-[2px]'><a href="/login">Masuk</a></button></li>
+							<li className="inline mr-8">
+								<a href='/register'>Daftar</a>
+							</li>
+							<li className="inline">
+								<button className="bg-blue-100 px-4 py rounded-full py-[2px]">
+									<a href="/login">Masuk</a>
+								</button>
+							</li>
 						</ul>
-					</div>
+					</div> : 
+					<div className="">
+					<ul className="">
+						<li className="inline mr-8">
+							<a href=''></a>
+						</li>
+						<li className="inline">
+							<button className="bg-blue-100 px-4 py rounded-full py-[2px]">
+								<a href="/logout">Keluar</a>
+							</button>
+						</li>
+					</ul>
+				</div>
+					}
 				</div>
 			</nav>
 		</div>
