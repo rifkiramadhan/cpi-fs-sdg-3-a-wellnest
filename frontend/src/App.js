@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, HomePage } from './components';
+import { Navbar, HomePage, CategoryList } from './components';
 
 const App = () => {
   return (
@@ -7,6 +7,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
+        <Route path='/categories' element={<CategoryList />} />
       </Routes>
     </BrowserRouter>
   );
