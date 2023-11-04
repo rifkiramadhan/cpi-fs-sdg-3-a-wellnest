@@ -52,10 +52,35 @@
 
 ```
 {
+    "doctor": false,
+    "username": "String"
     "firstName": "String",
     "lastName": "String",
     "email": "String",
     "password": "String"
+}
+```
+
+`POST User Doctor API`
+
+**POST**
+
+```
+/api/users/register
+```
+
+**`Request`**
+
+```
+{
+    "doctor": true,
+    "firstName": "String",
+    "lastName": "String",
+    "email": "String",
+    "password": "String",
+    "str_code": "String",
+    "qualification": "String",
+    "file_code": "String"
 }
 ```
 

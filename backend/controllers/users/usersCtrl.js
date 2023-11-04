@@ -16,18 +16,39 @@ const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
   const userExists = await User.findOne({ email: req?.body?.email });
 
   if (userExists) throw new Error('User already exists');
-  try {
-    //Register user
-    const user = await User.create({
-      firstName: req?.body?.firstName,
-      lastName: req?.body?.lastName,
-      email: req?.body?.email,
-      password: req?.body?.password,
-    });
-    res.json(user);
-  } catch (error) {
-    res.json(error);
+  if(req.body.doctor === true){
+    try {
+      //Register user
+      const user = await User.create({
+        username: req?.body?.username,
+        firstName: req?.body?.firstName,
+        lastName: req?.body?.lastName,
+        email: req?.body?.email,
+        password: req?.body?.password,
+        str_code: req?.body?.str_code,
+        qualification: req?.body?.qualification,
+        file_code: req?.body?.file_code,
+      });
+      res.json(user);
+    } catch (error) {
+      res.json(error);
+    }
+  }else{
+    try {
+      //Register user
+      const user = await User.create({
+        username: req?.body?.username,
+        firstName: req?.body?.firstName,
+        lastName: req?.body?.lastName,
+        email: req?.body?.email,
+        password: req?.body?.password,
+      });
+      res.json(user);
+    } catch (error) {
+      res.json(error);
+    }
   }
+
 });
 
 //-------------------------------------
