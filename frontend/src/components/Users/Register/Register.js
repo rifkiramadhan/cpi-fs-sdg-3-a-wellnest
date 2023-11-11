@@ -1,9 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoIosArrowBack } from 'react-icons/io';
+import { fetchApi } from '../../../utils/api';
 
 const Register = () => {
+	const [register, setRegister] = useState({});
+	const [errors, setErrors] = useState({});
+
+	let registerApi;
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		console.log(register);
+		registerApi = await fetchApi('/users/register', {
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(register),
+		});
+		console.log(registerApi);
+
+		setErrors({
+			errorsData: { ...registerApi.data?.errors },
+			message: !registerApi.data?.errors && registerApi.data?.message,
+		});
+
+		if (register.konfirmasiPassword !== register.password) {
+			setErrors({
+				...errors,
+				errorsData:
+					{...errors.errorsData, konfirmasiPassword: { message: 'Konfirmasi password is not suit' },}
+			});
+		}
+		console.log(registerApi.data.id);
+
+		if (registerApi.data.id) {
+			window.location.href = '/login';
+		}
+	};
+
+	console.log(errors);
+
 	return (
-		<div className="bg-blue-100 h-screen font-['poppins']">
+		<div className="bg-blue-100 h-fit font-['poppins']">
 			<div className="h-10"></div>
 			<div className="bg-white w-1/3 min-w-[500px] text-center  rounded-lg m-auto pb-16">
 				<div className="relative">
@@ -18,47 +58,119 @@ const Register = () => {
 				</div>
 				<h1 className="font-bold text-3xl mb-3">Buat Akun</h1>
 				<p className="font-bold text-sm mb-7 ">Isi data anda untuk mendaftar</p>
-
-				<form className="w-2/3 mx-auto">
+				<p className="text-red-500">{errors?.message}</p>
+				<form className="w-2/3 mx-auto" onSubmit={(e) => handleSubmit(e)}>
 					<input
 						placeholder="Username"
 						type={'text'}
 						name="username"
-						className="w-full p-1 w-full border-b border-black mb-4"></input>
+						value={register.username}
+						onChange={(e) => {
+							setRegister({
+								...register,
+								username: e.target.value,
+							});
+						}}
+						className="w-full p-1 w-full border-b border-black mb-6"></input>
+					<p className="text-left -mt-4 text-xs mx-1 text-red-500 mb-1">
+						{errors?.errorsData?.username?.message}
+					</p>
 					<input
-						placeholder="Nama Lengkap"
+						placeholder="Nama Depan"
 						type={'text'}
-						name="namaLengkap"
-						className="w-full p-1 w-full border-b border-black mb-4"></input>
+						name="namaDepan"
+						value={register.firstName}
+						onChange={(e) => {
+							setRegister({
+								...register,
+								firstName: e.target.value,
+							});
+						}}
+						className="w-full p-1 w-full border-b border-black mb-6"></input>
+					<p className="text-left -mt-4 text-xs mx-1 text-red-500 mb-1">
+						{errors?.errorsData?.firstName?.message}
+					</p>
+					<input
+						placeholder="Nama Belakang"
+						type={'text'}
+						name="namaBelakang"
+						value={register.lastName}
+						onChange={(e) => {
+							setRegister({
+								...register,
+								lastName: e.target.value,
+							});
+						}}
+						className="w-full p-1 w-full border-b border-black mb-6"></input>
+					<p className="text-left -mt-4 text-xs mx-1 text-red-500 mb-1">
+						{errors?.errorsData?.lastName?.message}
+					</p>
 					<input
 						placeholder="Email"
-						type={'text'}
+						type={'email'}
 						name="email"
-						className="w-full p-1 w-full border-b border-black mb-4"></input>
-					<input
-						placeholder="Nomor Telpon"
-						type={'tel'}
-						name="nomorTelpon"
-						className="w-full p-1 w-full border-b border-black mb-4"></input>
+						value={register.email}
+						onChange={(e) => {
+							setRegister({
+								...register,
+								email: e.target.value,
+							});
+						}}
+						className="w-full p-1 w-full border-b border-black mb-b mb-6"></input>
+					<p className="text-left -mt-4 text-xs mx-1 text-red-500 mb-1">
+						{errors?.errorsData?.email?.message}
+					</p>
 					<input
 						placeholder="Password"
 						type={'password'}
 						name="password"
-						className="w-full p-1 w-full border-b border-black mb-4"></input>
+						value={register.password}
+						onChange={(e) => {
+							setRegister({
+								...register,
+								password: e.target.value,
+							});
+						}}
+						className="w-full p-1 w-full border-b border-black mb-6"></input>
+					<p className="text-left -mt-4 text-xs mx-1 text-red-500 mb-1">
+						{errors?.errorsData?.password?.message}
+					</p>
 					<input
 						placeholder="Konfirmasi Password"
 						type={'password'}
 						name="konfirmasiPassword"
-						className="w-full p-1 w-full border-b border-black mb-4"></input>
+						value={register?.konfirmasiPassword}
+						onChange={(e) => {
+							setRegister({
+								...register,
+								konfirmasiPassword: e.target.value,
+							});
+						}}
+						className="w-full p-1 w-full border-b border-black mb-6"></input>
+					<p className="text-left -mt-4 text-xs mx-1 text-red-500 mb-1">
+						{errors?.errorsData?.konfirmasiPassword?.message}
+					</p>
+
 					<button
 						type="submit"
 						className="w-full bg-blue-200 p-1 rounded-md font-bold text-lg text-14 my-7">
 						Daftar
 					</button>
 				</form>
-        <p className='mb-2 text-sm'>Sudah punya akun? <a href='/login' className='font-bold'>Masuk di sini</a></p>
-        <p className='text-sm'>Mendaftar Sebagai Tenaga Medis? <a href='/#' className='font-bold'>Daftar di sini</a></p>
+				<p className="mb-2 text-sm">
+					Sudah punya akun?{' '}
+					<a href="/login" className="font-bold">
+						Masuk di sini
+					</a>
+				</p>
+				<p className="text-sm">
+					Mendaftar Sebagai Tenaga Medis?{' '}
+					<a href="/#" className="font-bold">
+						Daftar di sini
+					</a>
+				</p>
 			</div>
+			<div className="h-10"></div>
 		</div>
 	);
 };
