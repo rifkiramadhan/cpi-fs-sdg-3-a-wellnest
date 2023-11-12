@@ -23,7 +23,7 @@ const createCategoryCtrl = expressAsyncHandler(async (req, res) => {
 // Fetch Category
 const fetchCategoriesCtrl = expressAsyncHandler(async (req, res) => {
   try{
-    const allCategories = await Category.find({})
+    const allCategories = await Category.find({}).populate('user')
     return res.json(allCategories)
   }
   catch(error){

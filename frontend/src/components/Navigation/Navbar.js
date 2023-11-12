@@ -31,7 +31,6 @@ const Navbar = () => {
 					<div className="">
 					<ul className="">
 						<li className="inline mr-8">
-							<a href=''></a>
 						</li>
 						<li className="inline mr-8">
 							<button className="bg-blue-100 px-4 py rounded-full py-[2px]">
