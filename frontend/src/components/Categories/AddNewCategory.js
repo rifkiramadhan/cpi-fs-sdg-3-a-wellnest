@@ -35,9 +35,15 @@ const AddNewCategory = () => {
   }
 
   return <div className='mt-5 pt-5 px-44 bg-[#D8E7FF]'>
-  <span className='font-bold text-xl flex gap-4 items-center'><img src={iconArrowLeft} alt="arrowleft" className='w-2 cursor-pointer' onClick={()=>{
-    navigate('/categories');
-  }}/> Manage Kategori</span>
+  <span className='font-bold text-xl flex gap-4 items-center'>
+    <img 
+      src={iconArrowLeft} 
+      alt="arrowleft" 
+      className='w-2 cursor-pointer' 
+      onClick={()=>{
+      navigate('/categories');
+    }}
+  /> Manage Kategori</span>
   <div className='mt-9 h-screen bg-white shadow-md py-7 px-7 flex flex-col rounded-2xl'>
     <div className='flex justify-between items-center'>
       <h2 className='font-bold text-2xl'>Buat Kategori </h2>
@@ -55,8 +61,8 @@ const AddNewCategory = () => {
         </div>
       </div>
       <button className="flex justify-end pt-9 gap-2 items-center">
-            <span className='bg-[#E3EEFF] px-5 py-1 rounded-md font-bold flex gap-2'>Buat Kategori</span>
-        </button>
+        <span className='bg-[#E3EEFF] px-5 py-1 rounded-md font-bold flex gap-2'>Buat Kategori</span>
+      </button>
     </form>
   </div>
 </div>;
