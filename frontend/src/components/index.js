@@ -5,6 +5,8 @@ export { default as AddComment } from './Comments/AddComment';
 export { default as CommentsList } from './Comments/CommentsList';
 export { default as UpdateComment } from './Comments/UpdateComment';
 export { default as HomePage } from './HomePage/HomePage';
+export { default as DiscussionPage } from './DiscussionPage/DiscussionPage';
+export { default as AddDiscussionPage } from './DiscussionPage/AddDiscussionPage';
 export { default as Navbar } from './Navigation/Navbar';
 export { default as CreatePost } from './Posts/CreatePost';
 export { default as PostDetails } from './Posts/PostDetails';

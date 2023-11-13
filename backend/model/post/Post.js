@@ -9,9 +9,10 @@ const postSchema = new mongoose.Schema(
     },
     //    Created By Only Category
     category: {
-      type: String,
       required: [true, 'Post category is required'],
       default: 'All',
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Category',
     },
     isLiked: {
       type: Boolean,
