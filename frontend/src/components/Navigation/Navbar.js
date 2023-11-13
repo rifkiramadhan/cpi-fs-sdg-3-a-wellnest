@@ -3,7 +3,7 @@ import './../../index.css';
 
 const Navbar = () => {
 	return (
-		<div className="bg-white font-['Poppins'] z-40 sticky top-0">
+		<div className="bg-white font-['Poppins'] z-40 sticky top-0 drop-shadow">
 			<nav className="mx-[15%] h-16 flex items-center">
 				<div className="flex items-center">
 					<h1 className="text-2xl text-center px-4 font-black">WellNest</h1>
