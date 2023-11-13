@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, HomePage, Login, Register, CategoryList } from './components';
+import { Navbar, HomePage, Login, Register, CategoryList, DiscussionPage, AddDiscussionPage, AddNewCategory } from './components';
 import Logout from './components/Users/Login/Logout';
 import { selectUser } from './redux/slices/users/usersSlices';
 
@@ -13,9 +13,12 @@ const App = () => {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/categories' element={<CategoryList />} />
+        <Route path='/categories/add' element={<AddNewCategory />} />
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/logout' element={<Logout/>}/>
+        <Route path='/discussion/:id' element={<DiscussionPage/>}/>
+        <Route path='/discussion/add' element={<AddDiscussionPage/>}/>
       </Routes>
     </BrowserRouter>
   );

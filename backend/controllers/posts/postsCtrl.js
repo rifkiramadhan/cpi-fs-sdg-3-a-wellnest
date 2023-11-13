@@ -26,14 +26,22 @@ const createPostCtrl = expressAsyncHandler(async (req, res) => {
 //-------------------------------------
 // Fetch All Posts
 //-------------------------------------
-const fetchPostsCtrl = expressAsyncHandler(async (req, res) => {});
+const fetchPostsCtrl = expressAsyncHandler(async (req, res) => {
+	try{
+		const allPosts = await Post.find({}).populate('user').populate('category')
+		return res.json(allPosts)
+	  }
+	  catch(error){
+		return res.json(error)
+	  }
+});
 
 //-------------------------------------
 // Fetch a Single Post
 //-------------------------------------
 const fetchPostCtrl = expressAsyncHandler(async (req, res) => {
 	try {
-		const getPostById = await Post.findById(req.params.id);
+		const getPostById = await Post.findById(req.params.id).populate('user').populate('category');
 		return res.json({ post: getPostById });
 	} catch (error) {
 		res.json(error);
