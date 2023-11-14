@@ -3,7 +3,7 @@ import './../../index.css';
 
 const Navbar = () => {
 	return (
-		<div className="bg-white font-['Poppins'] sticky top-0 z-50">
+		<div className="bg-white font-['Poppins'] z-40 sticky top-0 drop-shadow">
 			<nav className="mx-[15%] h-16 flex items-center">
 				<div className="flex items-center">
 					<h1 className="text-2xl text-center px-4 font-black">WellNest</h1>
@@ -11,9 +11,9 @@ const Navbar = () => {
 				<div className="flex justify-between w-full ml-5 font-medium">
 					<div className="">
 						<ul className="">
-							<li className="inline mr-5">Forum</li>
-							<li className="inline mr-5">About Us</li>
-							<li className="inline">Contact</li>
+							<li className="inline mr-5"><a href='/'>Forum</a></li>
+							<li className="inline mr-5"><a href='/aboutUs'>About Us</a></li>
+							<li className="inline"><a href='/contact'>Contact</a></li>
 						</ul>
 					</div>
 					{!window.localStorage.token ? <div className="">

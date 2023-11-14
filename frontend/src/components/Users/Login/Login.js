@@ -117,9 +117,14 @@ const Login = () => {
 									Daftar di sini
 								</a>
 							</p>
-							<a href="/#" className="font-bold">
-								Daftar sebagai dokter
-							</a>
+							<div className='flex px-20 justify-evenly w-full mt-8'>
+								<img width={'30px'} src='fb.png'/>
+								<img width={'30px'} src='ig.png'/>
+								<img width={'30px'} src='tele.png'/>
+								<img width={'30px'} src='tiktok.png'/>
+								<img width={'30px'} src='yt.png'/>
+								<img width={'30px'} src='wa.png'/>
+							</div>
 						</div>
 					</div>
 					<div className="w-5"></div>

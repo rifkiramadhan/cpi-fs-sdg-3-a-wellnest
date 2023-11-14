@@ -68,7 +68,6 @@ const updatePostCtrl = expressAsyncHandler(async (req, res) => {
 			{ _id: req.params.id },
 			getPostById
 		);
-
 		return res.json(updatePost);
 	} catch (error) {
 		return res.json(error);
@@ -84,7 +83,7 @@ const deletePostCtrl = expressAsyncHandler(async (req, res) => {
 
 		return res.json(deletePost);
 	} catch (error) {
-		return res.json(deletePost);
+		return res.json(error);
 	}
 });
 
@@ -93,32 +92,37 @@ const deletePostCtrl = expressAsyncHandler(async (req, res) => {
 //-------------------------------------
 const toggleAddLikeToPostCtrl = expressAsyncHandler(
 	async (req, res) => {
-		// 1. Find the post to be liked
-		const findPost = await Post.findById(req.body._id);
+		try{
 
-		// 2. Find the login user
-		const user = req.user;
-		const hasUserLiked = findPost.likes.indexOf(user._id);
-		console.log(hasUserLiked);
-		// 3. Find is this user has liked this post?
-		if (hasUserLiked === -1) {
-			findPost.isLiked = true;
-			findPost.likes.push(user);
-			const idx = findPost.disLikes.indexOf(user._id);
-			if (idx !== -1) {
-				findPost.disLikes.splice(idx, 1);
+			const findPost = await Post.findById(req.body._id);
+	
+			// 2. Find the login user
+			const user = req.user;
+			const hasUserLiked = findPost.likes.indexOf(user._id);
+			console.log(hasUserLiked);
+			// 3. Find is this user has liked this post?
+			if (hasUserLiked === -1) {
+				findPost.isLiked = true;
+				findPost.likes.push(user);
+				const idx = findPost.disLikes.indexOf(user._id);
+				if (idx !== -1) {
+					findPost.disLikes.splice(idx, 1);
+				}
+			} else {
+				// 4. Check if this user has dislikes this post?
+				// 5. Remove the user from dislikes array if exists
+				findPost.isLiked = false;
+				const idx = findPost.likes.indexOf(user);
+				findPost.likes.splice(idx, 1);
 			}
-		} else {
-			// 4. Check if this user has dislikes this post?
-			// 5. Remove the user from dislikes array if exists
-			findPost.isLiked = false;
-			const idx = findPost.likes.indexOf(user);
-			findPost.likes.splice(idx, 1);
+	
+			const updatedPost = await Post.updateOne({ _id: req.body._id }, findPost);
+			return res.json(updatedPost);
+		}catch(error){
+			return res.json(error)
 		}
+		// 1. Find the post to be liked
 
-		const updatedPost = await Post.updateOne({ _id: req.body._id }, findPost);
-
-		return res.json(updatedPost);
 	}
 
 	// Toggle

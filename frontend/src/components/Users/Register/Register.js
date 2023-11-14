@@ -163,12 +163,6 @@ const Register = () => {
 						Masuk di sini
 					</a>
 				</p>
-				<p className="text-sm">
-					Mendaftar Sebagai Tenaga Medis?{' '}
-					<a href="/#" className="font-bold">
-						Daftar di sini
-					</a>
-				</p>
 			</div>
 			<div className="h-10"></div>
 		</div>

@@ -7,11 +7,12 @@ import { useEffect } from 'react';
 import moment from 'moment';
 const CategoryList = () => {
   const [dataCategories,setDataCategories] = useState([]);
+  const [dataPosts, setDataPosts] = useState({});
+  const [postsInCategory, setPostsInCategory] = useState([])
   const navigate  = useNavigate();
+  const token = window.localStorage.getItem('token')
 
   const getAllCategories = async()=>{
-    const token = window.localStorage.getItem('token')
-    
       const dataValidation = await fetchApi('/category', {
         method: 'GET',
         credentials: 'include',
@@ -23,12 +24,53 @@ const CategoryList = () => {
       if (dataValidation.response.OK) {
         setDataCategories(dataValidation.data)
       } else {
-        alert('gagal buat kategori')
+        alert('gagal memuat kategori')
       }
+  }
+
+  const deleteCategory = async(id)=>{
+    const confirmDelete =  window.confirm('Yakin hapus kategori?')
+    if(confirmDelete){
+      const dataValidation = await fetchApi(`/category/${id}`, {
+        method: 'DELETE',
+        credentials: 'include',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      if (dataValidation.response.OK) {
+        alert('Kategori berhasil dihapus!')
+      } else {
+        alert('gagal hapus kategori')
+      }
+
+      getAllCategories()
+    }
+  }
+
+  const getAllPosts = async()=>{
+    const dataValidation = await fetchApi('/posts', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (dataValidation.response.OK) {
+      setDataPosts(dataValidation.data)
+      setPostsInCategory([])
+      dataValidation.data.forEach((e)=>{
+        setPostsInCategory(arr => [...arr, e?.category?.title])
+      })
+    } else {
+      alert('gagal buat kategori')
+    }
   }
 
   useEffect(()=>{
     getAllCategories();
+    getAllPosts();
   },[])
 
 
@@ -58,11 +100,11 @@ const CategoryList = () => {
           </div>
         </div>
         <div className='flex flex-col gap-2 items-start justify-center'>
-          <p className='font-semibold'>32 Item Diskusi</p>
+          <p className='font-semibold'>{postsInCategory.filter(e => e === item.title).length} Item Diskusi</p>
         </div>
         <div className='flex gap-2 justify-center items-center'>
-          <button className='py-1 px-7 rounded-full bg-white font-medium'>Edit</button>
-          <button className='py-1 px-7 rounded-full bg-white font-medium'>Hapus</button>
+          <a href={`/categories/${item._id}/edit`}><button className='py-1 px-7 rounded-full bg-white font-medium'>Edit</button></a>
+          <button onClick={()=>{deleteCategory(item._id)}} className='py-1 px-7 rounded-full bg-white font-medium'>Hapus</button>
         </div>
       </div>
       })}
