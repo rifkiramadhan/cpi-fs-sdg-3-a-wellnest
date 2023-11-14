@@ -92,9 +92,6 @@ const EditDiscussionPage = () => {
 		});
 		if (dataValidation.response.OK) {
 			alert('berhasil buat post');
-      console.log(title)
-      console.log(value)
-
 			navigate('/');
 		} else {
 			alert('gagal buat post');
@@ -123,7 +120,6 @@ const EditDiscussionPage = () => {
 				onSubmit={handleSubmit}
 				className="mt-9 h-screen bg-white shadow-md py-7 px-7 flex flex-col rounded-2xl">
 				<div className="w-full">
-          {console.log(title)}
 					<input
 						type="text"
             value={title}
@@ -145,10 +141,10 @@ const EditDiscussionPage = () => {
 						<option value={''}>Pilih Kategori</option>
 						{dataCategories.map((item, index) => {
 							return (
-								dataPostDetail.category.title === item.title ? <option key={`categories-select-${index}`} selected value={item._id}>
-									{item.title}
+								dataPostDetail.category?.title === item?.title ? <option key={`categories-select-${index}`} selected value={item._id}>
+									{item?.title}
 								</option>:<option key={`categories-select-${index}`} value={item._id}>
-                {item.title}
+                {item?.title}
               </option>
 							);
 						})}
@@ -165,7 +161,7 @@ const EditDiscussionPage = () => {
 				<div className="flex justify-end w-full items-center">
 					<button type="submit" className="pt-9 gap-2">
 						<span className="bg-[#E3EEFF] px-5 py-1 rounded-md font-bold flex gap-2">
-							Post Diskusi
+							Edit Diskusi
 						</span>
 					</button>
 				</div>

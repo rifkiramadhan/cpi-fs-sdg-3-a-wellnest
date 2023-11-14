@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Navbar, HomePage, Login, Register, CategoryList, DiscussionPage, AddDiscussionPage, AddNewCategory } from './components';
+import { Navbar, HomePage, Login, Register, CategoryList, DiscussionPage, AddDiscussionPage, AddNewCategory, UpdateCategory } from './components';
 import EditDiscussionPage from './components/DiscussionPage/EditDiscussion';
 import NotFound from './components/Navigation/Not Found/NotFound';
 import Logout from './components/Users/Login/Logout';
@@ -16,6 +16,7 @@ const App = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/categories' element={<CategoryList />} />
         <Route path='/categories/add' element={<AddNewCategory />} />
+        <Route path='/categories/:id/edit' element={<UpdateCategory />} />
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/logout' element={<Logout/>}/>

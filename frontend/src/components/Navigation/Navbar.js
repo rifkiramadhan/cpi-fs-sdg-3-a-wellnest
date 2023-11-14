@@ -11,9 +11,9 @@ const Navbar = () => {
 				<div className="flex justify-between w-full ml-5 font-medium">
 					<div className="">
 						<ul className="">
-							<li className="inline mr-5">Forum</li>
-							<li className="inline mr-5">About Us</li>
-							<li className="inline">Contact</li>
+							<li className="inline mr-5"><a href='/'>Forum</a></li>
+							<li className="inline mr-5"><a href='/aboutUs'>About Us</a></li>
+							<li className="inline"><a href='/contact'>Contact</a></li>
 						</ul>
 					</div>
 					{!window.localStorage.token ? <div className="">
