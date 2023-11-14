@@ -3,7 +3,7 @@ import iconSearch from '../../assets/icons/Search.svg';
 import iconViews from '../../assets/icons/arrowViews.svg';
 import iconDot from '../../assets/icons/dot.svg';
 import iconBack from '../../assets/icons/back-icon.png';
-import Carousel from 'react-elastic-carousel'
+import Carousel from 'react-elastic-carousel';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchApi } from '../../utils/api';
@@ -14,6 +14,8 @@ import { Fragment } from 'react';
 const HomePage = () => {
 	const [dataPosts, setDataPosts] = useState([]);
 	const [dataCategories, setDataCategories] = useState([]);
+	const [activeCategory, setActiveCategory] = useState(null);
+	const [isSearching, setIsSearching] = useState(false);
 	const navigate = useNavigate();
 
 	function classNames(...classes) {
@@ -52,7 +54,7 @@ const HomePage = () => {
 
 	const handleDelete = async (id) => {
 		const token = window.localStorage.getItem('token');
-		if(window.confirm('Yakin hapus post?')){
+		if (window.confirm('Yakin hapus post?')) {
 			const deleteTopic = await fetchApi(`/posts/${id}`, {
 				method: 'DELETE',
 				credentials: 'include',
@@ -74,24 +76,50 @@ const HomePage = () => {
 	// }
 	return (
 		<div className="pt-5 px-44 bg-[#D8E7FF] h-full pb-20">
-			<h2 className="font-bold text-xl">Kategori</h2>
+			{isSearching ? (
+				<h2 className="font-bold text-xl">Pencarian</h2>
+			) : (
+				<h2 className="font-bold text-xl">Kategori</h2>
+			)}
 			<div className="flex items-center gap-5">
-				<div className="flex items-center mt-2 bg-white rounded-lg shadow-md h-16 px-5 gap-2 w-full">
-					<Carousel itemsToShow={5} pagination={false}>
-						{dataCategories.map((item, index) => {
-							return (
+				{!isSearching && (
+					<div className="flex items-center mt-2 bg-white rounded-lg shadow-md h-16 px-5 gap-2 w-full">
+						<Carousel itemsToShow={5} pagination={false}>
+							{dataCategories.map((item, index) => (
 								<span
 									key={`carousel-category-${index}`}
-									className="bg-[#D0F1FF] py-1 px-7 rounded-md font-bold cursor-pointer">
+									className={`bg-${
+										activeCategory === index ? 'blue-200 font-bold' : 'white'
+									} py-1 px-7 rounded-md cursor-pointer`}
+									onClick={() => setActiveCategory(index)}>
 									{item.title}
 								</span>
-							);
-						})}
-					</Carousel>
-				</div>
-				<div className="bg-white shadow-md mt-2 h-16 flex items-center py-1 px-4 rounded-md cursor-pointer">
-					<img src={iconSearch} alt="iconsearch" />
-				</div>
+							))}
+						</Carousel>
+					</div>
+				)}
+				{isSearching ? (
+					<div className="relative w-full items-center">
+						<input
+							onChange={(e) => setIsSearching(e.target.value)}
+							className="mt-2 pl-16 pr-5 bg-white font-bold rounded-lg shadow-md h-16 w-full relative placeholder:text-black"
+							placeholder="Mau cari forum apa ?"
+						/>
+						<img
+							src={iconBack}
+							alt="Back"
+							className="absolute mt-1 left-0 top-1/2 transform -translate-y-1/2 cursor-pointer"
+							style={{ width: '40px', height: '40px' }} // Sesuaikan ukuran gambar
+							onClick={() => setIsSearching(false)}
+						/>
+					</div>
+				) : (
+					<button
+						onClick={() => setIsSearching(true)}
+						className="bg-white shadow-md mt-2 h-16 flex items-center py-1 px-4 rounded-md cursor-pointer">
+						<img src={iconSearch} alt="iconsearch" />
+					</button>
+				)}
 			</div>
 			<div className="mt-9 h-52 bg-white shadow-md rounded-2xl flex justify-center items-center px-2">
 				<Carousel itemsToShow={1} pagination={false}>
