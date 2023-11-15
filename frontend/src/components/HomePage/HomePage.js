@@ -10,6 +10,7 @@ import { fetchApi } from '../../utils/api';
 import moment from 'moment';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import {toast} from 'react-toastify'
 
 const HomePage = () => {
 	const [dataPosts, setDataPosts] = useState([]);
@@ -115,7 +116,8 @@ const HomePage = () => {
 					</div>
 				) : (
 					<button
-						onClick={() => setIsSearching(true)}
+						onClick={() => {setIsSearching(true)
+						}}
 						className="bg-white shadow-md mt-2 h-16 flex items-center py-1 px-4 rounded-md cursor-pointer">
 						<img src={iconSearch} alt="iconsearch" />
 					</button>
@@ -201,6 +203,18 @@ const HomePage = () => {
 															<Menu.Item>
 																{({ active }) => (
 																	<a
+																	onClick={()=>{
+																		toast.info("'Ingat saya' tidak dicentang", {
+																			position: "top-right",
+																			autoClose: 2000,
+																			hideProgressBar: false,
+																			closeOnClick: true,
+																			pauseOnHover: true,
+																			draggable: true,
+																			progress: undefined,
+																			theme: "light",
+																			});
+																	}}
 																		href={`/discussion/${item._id}`}
 																		className={classNames(
 																			active
@@ -218,6 +232,8 @@ const HomePage = () => {
 															<Menu.Item>
 																{({ active }) => (
 																	<a
+																	onClick={()=>{
+																	}}
 																		href={`/discussion/${item._id}/edit`}
 																		className={classNames(
 																			active

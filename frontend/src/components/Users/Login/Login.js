@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useReducer } from 'react';
 import '../../../index.css';
 import { IoIosArrowBack } from 'react-icons/io';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../redux/slices/users/usersSlices';
 import { fetchApi } from '../../../utils/api';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 	const [email, setEmail] = useState('');
@@ -12,8 +14,8 @@ const Login = () => {
 	const [loading, setLoading] = useState(false);
 	const [ingatSaya, setIngatSaya] = useState(false);
 
-	if(window.localStorage.token){
-		window.location.href = '/'
+	if (window.localStorage.token) {
+		window.location.href = '/';
 	}
 
 	const handleSubmit = async (e) => {
@@ -33,19 +35,39 @@ const Login = () => {
 			}),
 		});
 
-		console.log(dataValidation);
 		if (dataValidation.response.OK) {
-			setLoading(false);
-			window.localStorage.setItem('email', dataValidation.data?.email)
-			window.localStorage.setItem('fullName', dataValidation.data?.firstName+' '+ dataValidation.data?.lastName )
-			window.localStorage.setItem('token', dataValidation.data?.token)
-			window.localStorage.setItem('id', dataValidation.data?._id)
-			window.location.href = '/';
+			if (!ingatSaya) {
+				toast.info("'Ingat saya' tidak dicentang", {
+					position: 'top-right',
+					autoClose: 2000,
+					hideProgressBar: true,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+					theme: 'light',
+				});
+			}
+			setTimeout(() => {
+				setLoading(false);
+				window.localStorage.setItem('email', dataValidation.data?.email);
+				window.localStorage.setItem(
+					'fullName',
+					dataValidation.data?.firstName + ' ' + dataValidation.data?.lastName
+				);
+				window.localStorage.setItem('token', dataValidation.data?.token);
+				window.localStorage.setItem('id', dataValidation.data?._id);
+				window.location.href = '/';
+			}, 2500);
 		} else {
 			setLoading(false);
 			setError(dataValidation.data?.message);
 		}
 	};
+
+	useEffect(() => {
+		console.log(ingatSaya);
+	}, [ingatSaya]);
 
 	return (
 		<div className="bg-blue-100 h-screen font-['poppins'] flex justify-center items-center">
@@ -91,10 +113,14 @@ const Login = () => {
 								placeholder="Password"
 								value={password}
 							/>
-
 							<div className=" flex justify-between mb-7">
 								<div className="flex items-center inline">
-									<input type={'checkbox'} name="ingatSaya" onChange={(e)=>setIngatSaya(e.target.value)} />
+									<input
+										type={'checkbox'}
+										name="ingatSaya"
+										value={'0'}
+										onChange={(e) => setIngatSaya(e.target.checked)}
+									/>
 									<p className="text-sm ml-1">Ingat saya</p>
 								</div>
 								<p>
@@ -117,13 +143,13 @@ const Login = () => {
 									Daftar di sini
 								</a>
 							</p>
-							<div className='flex px-20 justify-evenly w-full mt-8'>
-								<img width={'30px'} src='fb.png'/>
-								<img width={'30px'} src='ig.png'/>
-								<img width={'30px'} src='tele.png'/>
-								<img width={'30px'} src='tiktok.png'/>
-								<img width={'30px'} src='yt.png'/>
-								<img width={'30px'} src='wa.png'/>
+							<div className="flex px-20 justify-evenly w-full mt-8">
+								<img width={'30px'} src="fb.png" />
+								<img width={'30px'} src="ig.png" />
+								<img width={'30px'} src="tele.png" />
+								<img width={'30px'} src="tiktok.png" />
+								<img width={'30px'} src="yt.png" />
+								<img width={'30px'} src="wa.png" />
 							</div>
 						</div>
 					</div>
