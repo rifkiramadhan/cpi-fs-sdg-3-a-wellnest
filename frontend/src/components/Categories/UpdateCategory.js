@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import iconArrowLeft from '../../assets/icons/arrowLeft.svg';
 import { useNavigate, useParams } from 'react-router-dom';
 import { fetchApi } from '../../utils/api';
+import {toast} from 'react-toastify'
 
 const UpdateCategory = () => {
 	const { id } = useParams();

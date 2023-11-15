@@ -8,6 +8,7 @@ import { BiSolidCommentDetail } from 'react-icons/bi';
 import { fetchApi } from '../../utils/api';
 import { useCallback } from 'react';
 import moment from 'moment';
+import {toast} from 'react-toastify';
 
 const DiscussionPage = () => {
 	const { id } = useParams();
@@ -113,7 +114,8 @@ const DiscussionPage = () => {
 						dangerouslySetInnerHTML={{ __html: dataPostDetail.description }}
 					/>
 					<div className="flex gap-16 justify-center w-full">
-						<button onClick={handleLike}>
+						<button onClick={()=>{
+							handleLike()}}>
 							<div className="flex flex-col gap-2">
 								{isUserLike ? (
 									<span className="w-16 h-16 rounded-lg bg-[#D8E7FF] flex justify-center items-center text-blue-500">

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { fetchApi } from '../../utils/api';
 import { useEffect } from 'react';
 import moment from 'moment';
+import {toast} from 'react-toastify'
 const CategoryList = () => {
   const [dataCategories,setDataCategories] = useState([]);
   const [dataPosts, setDataPosts] = useState({});
@@ -103,8 +104,20 @@ const CategoryList = () => {
           <p className='font-semibold'>{postsInCategory.filter(e => e === item.title).length} Item Diskusi</p>
         </div>
         <div className='flex gap-2 justify-center items-center'>
-          <a href={`/categories/${item._id}/edit`}><button className='py-1 px-7 rounded-full bg-white font-medium'>Edit</button></a>
-          <button onClick={()=>{deleteCategory(item._id)}} className='py-1 px-7 rounded-full bg-white font-medium'>Hapus</button>
+          <a href={`/categories/${item._id}/edit`} onClick={()=>{
+            toast.info("'Ingat saya' tidak dicentang", {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+              });
+          }}><button className='py-1 px-7 rounded-full bg-white font-medium'>Edit</button></a>
+          <button onClick={()=>{
+            deleteCategory(item._id)}} className='py-1 px-7 rounded-full bg-white font-medium'>Hapus</button>
         </div>
       </div>
       })}
