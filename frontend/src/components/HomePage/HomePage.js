@@ -11,6 +11,8 @@ import moment from 'moment';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import {toast} from 'react-toastify'
+import Cookies from 'universal-cookie';
+import { cookies } from '../Users/Login/Login';
 
 const HomePage = () => {
 	const [dataPosts, setDataPosts] = useState([]);
@@ -18,6 +20,8 @@ const HomePage = () => {
 	const [activeCategory, setActiveCategory] = useState(null);
 	const [isSearching, setIsSearching] = useState(false);
 	const navigate = useNavigate();
+
+	console.log(cookies.get('token'))
 
 	function classNames(...classes) {
 		return classes.filter(Boolean).join(' ');
@@ -177,7 +181,7 @@ const HomePage = () => {
 									</p>
 								</div>
 								<div className="flex flex-col gap-2 items-start justify-center">
-									{window.localStorage.getItem('token') && (
+									{(window.localStorage.getItem('token') || cookies.get('token')) && (
 										<Menu as="div" className={'w-full text-right'}>
 											<Menu.Button>
 												<button onClick={() => {}}>

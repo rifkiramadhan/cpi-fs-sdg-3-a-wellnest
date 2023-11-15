@@ -1,5 +1,6 @@
 import React from 'react';
 import './../../index.css';
+import { cookies } from '../Users/Login/Login';
 
 const Navbar = () => {
 	return (
@@ -16,7 +17,8 @@ const Navbar = () => {
 							<li className="inline"><a href='/contact'>Contact</a></li>
 						</ul>
 					</div>
-					{!window.localStorage.token ? <div className="">
+					{console.log(cookies.get('token'))}
+					{(!window.localStorage.token && !cookies.get('token')) ? <div className="">
 						<ul className="">
 							<li className="inline mr-8">
 								<a href='/register'>Daftar</a>

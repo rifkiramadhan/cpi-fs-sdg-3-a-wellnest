@@ -6,7 +6,9 @@ import { login } from '../../../redux/slices/users/usersSlices';
 import { fetchApi } from '../../../utils/api';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cookies from 'universal-cookie'
 
+export const cookies = new Cookies(null, {maxAge: 12*60*60})
 const Login = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -14,7 +16,7 @@ const Login = () => {
 	const [loading, setLoading] = useState(false);
 	const [ingatSaya, setIngatSaya] = useState(false);
 
-	if (window.localStorage.token) {
+	if (window.localStorage.token || cookies.get('token')) {
 		window.location.href = '/';
 	}
 
@@ -55,7 +57,11 @@ const Login = () => {
 					'fullName',
 					dataValidation.data?.firstName + ' ' + dataValidation.data?.lastName
 				);
-				window.localStorage.setItem('token', dataValidation.data?.token);
+				if(!ingatSaya){
+					cookies.set('token', dataValidation.data?.token)
+				}else{
+					window.localStorage.setItem('token', dataValidation.data?.token);
+				}
 				window.localStorage.setItem('id', dataValidation.data?._id);
 				window.location.href = '/';
 			}, 2500);
@@ -66,7 +72,6 @@ const Login = () => {
 	};
 
 	useEffect(() => {
-		console.log(ingatSaya);
 	}, [ingatSaya]);
 
 	return (

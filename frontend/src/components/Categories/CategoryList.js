@@ -6,12 +6,14 @@ import { fetchApi } from '../../utils/api';
 import { useEffect } from 'react';
 import moment from 'moment';
 import {toast} from 'react-toastify'
+import { cookies } from '../Users/Login/Login';
+
 const CategoryList = () => {
   const [dataCategories,setDataCategories] = useState([]);
   const [dataPosts, setDataPosts] = useState({});
   const [postsInCategory, setPostsInCategory] = useState([])
   const navigate  = useNavigate();
-  const token = window.localStorage.getItem('token')
+  const token = window.localStorage.getItem('token') || cookies.get('token')
 
   const getAllCategories = async()=>{
       const dataValidation = await fetchApi('/category', {

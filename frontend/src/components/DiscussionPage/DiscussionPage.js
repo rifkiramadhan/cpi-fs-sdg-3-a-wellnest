@@ -9,6 +9,8 @@ import { fetchApi } from '../../utils/api';
 import { useCallback } from 'react';
 import moment from 'moment';
 import {toast} from 'react-toastify';
+import Cookies from 'universal-cookie';
+import { cookies } from '../Users/Login/Login';
 
 const DiscussionPage = () => {
 	const { id } = useParams();
@@ -39,7 +41,7 @@ const DiscussionPage = () => {
 			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json',
-				authorization: `Bearer ${window.localStorage.token}`,
+				authorization: `Bearer ${window.localStorage.token || cookies.get('token')}`,
 			},
 			body: JSON.stringify({
 				_id: dataPostDetail._id,
@@ -60,7 +62,7 @@ const DiscussionPage = () => {
 			credentials: 'include',
 			headers: {
 				'Content-Type': 'application/json',
-				authorization: `Bearer ${window.localStorage.token}`,
+				authorization: `Bearer ${window.localStorage.token || cookies.get('token')}`,
 			},
 			body: JSON.stringify({
 				_id: dataPostDetail._id,

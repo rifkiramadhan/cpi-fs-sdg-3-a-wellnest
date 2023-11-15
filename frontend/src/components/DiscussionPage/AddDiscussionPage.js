@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import { useState } from "react";
 import { fetchApi } from "../../utils/api";
 import {toast} from 'react-toastify'
+import { cookies } from "../Users/Login/Login";
 
 const modules = {
   toolbar: [
@@ -37,7 +38,7 @@ const AddDiscussionPage = () => {
   }
   const [dataCategories,setDataCategories] = useState([]);
   const getAllCategories = async()=>{
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem('token') || cookies.get('token')
     
       const dataValidation = await fetchApi('/category', {
         method: 'GET',
@@ -56,7 +57,7 @@ const AddDiscussionPage = () => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem('token') || cookies.get('token')
     const id = window.localStorage.getItem('id');
     
 
