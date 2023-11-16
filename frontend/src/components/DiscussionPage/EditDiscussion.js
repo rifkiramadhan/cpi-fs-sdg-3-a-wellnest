@@ -6,6 +6,7 @@ import 'react-quill/dist/quill.snow.css';
 import { useState } from 'react';
 import { fetchApi } from '../../utils/api';
 import {toast} from 'react-toastify'
+import { cookies } from '../Users/Login/Login';
 
 const modules = {
 	toolbar: [
@@ -35,12 +36,12 @@ const EditDiscussionPage = () => {
 	const [selectedCategory, setSelectedCategory] = useState('');
 	const { id } = useParams();
 	const navigate = useNavigate();
-	if (!window.localStorage.token) {
+	if (!window.localStorage.token && !cookies.get('token')) {
 		window.location.href = '/login';
 	}
   console.log(id)
 	const getAllCategories = async () => {
-		const token = window.localStorage.getItem('token');
+		const token = window.localStorage.getItem('token') || cookies.get('token');
 
 		const dataValidation = await fetchApi('/category', {
 			method: 'GET',
@@ -74,7 +75,7 @@ const EditDiscussionPage = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const token = window.localStorage.getItem('token');
+		const token = window.localStorage.getItem('token') || cookies.get('token');
 		const userId = window.localStorage.getItem('id');
 
 		const dataValidation = await fetchApi(`/posts/${id}`, {

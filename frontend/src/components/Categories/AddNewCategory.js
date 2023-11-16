@@ -3,6 +3,8 @@ import iconArrowLeft from '../../assets/icons/arrowLeft.svg';
 import { useNavigate } from 'react-router-dom';
 import { fetchApi } from '../../utils/api';
 import {toast} from 'react-toastify'
+import { cookies } from '../Users/Login/Login';
+
 const AddNewCategory = () => {
   const [title,setTitle] = useState('');
   const navigate  = useNavigate();
@@ -10,7 +12,7 @@ const AddNewCategory = () => {
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
-    const token = window.localStorage.getItem('token')
+    const token = window.localStorage.getItem('token') || cookies.get('token')
     const id = window.localStorage.getItem('id');
     
 
