@@ -33,7 +33,7 @@ const AddDiscussionPage = () => {
   const [value, setValue] = useState("");
   const [selectedCategory,setSelectedCategory] = useState('');
   const navigate = useNavigate();
-  if (!window.localStorage.token) {
+  if (!window.localStorage.token && !cookies.get('token')) {
     window.location.href = "/login";
   }
   const [dataCategories,setDataCategories] = useState([]);
@@ -77,7 +77,7 @@ const AddDiscussionPage = () => {
       });
       if (dataValidation.response.OK) {
         alert('berhasil buat post');
-        navigate('/categories')
+        navigate('/')
       } else {
         alert('gagal buat post')
       }

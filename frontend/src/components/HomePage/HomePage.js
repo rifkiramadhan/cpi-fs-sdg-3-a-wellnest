@@ -58,7 +58,7 @@ const HomePage = () => {
 	};
 
 	const handleDelete = async (id) => {
-		const token = window.localStorage.getItem('token');
+		const token = window.localStorage.getItem('token') || cookies.get('token');
 		if (window.confirm('Yakin hapus post?')) {
 			const deleteTopic = await fetchApi(`/posts/${id}`, {
 				method: 'DELETE',
@@ -175,7 +175,7 @@ const HomePage = () => {
 									}}
 									className="flex flex-col gap-2 items-start justify-center">
 									<p>{moment(item.created_at).format('LL')}</p>
-									<p className="text-2xl font-semibold">{item.title}</p>
+									<p className="text-2xl font-semibold hover:bg-sky-300 p-2 rounded-sm">{item.title}</p>
 									<p className="font-medium text-xs">
 										Oleh : {item?.user?.firstName}
 									</p>
